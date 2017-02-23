@@ -63,7 +63,7 @@ class GIARG_Gallery_Filter {
 			} // End foreach
 			// @codingStandardsIgnoreEnd
 		$output .= '</div><!-- End .gallery-contain -->';
-		$output .= '<button class="giarg-load-more">' . esc_html__( 'Load More Images', 'give-it-a-REST-gallery' ) . '</button>';
+		$output .= '<button class="giarg-load-more">' . esc_html( apply_filters( 'giarg_load_more_text', __( 'Load More Images', 'give-it-a-REST-gallery' ) ) ) . '</button>';
 
 		return $output;
 	}
