@@ -56,7 +56,7 @@ class GIARG_Gallery_Filter {
 				if ( false !== $img_src ) {
 					$output .= '<figure class="gallery-item">';
 						$output .= '<div class="gallery-icon landscape">';
-							$output .= '<a href="' . get_permalink( $img_id ) . '"><img width="' . $img_src[1] . '" height="' . $img_src[2] . '" src="' . esc_url( $img_src[0] ) . '" class="attachment-thumbnail size-thumbnail" alt=""></a>';
+							$output .= '<a href="' . get_permalink( $img_id ) . '"><img width="' . esc_attr( $img_src[1] ) . '" height="' . esc_attr( $img_src[2] ) . '" src="' . esc_url( $img_src[0] ) . '" class="attachment-thumbnail size-thumbnail" alt=""></a>';
 						$output .= '</div>';
 					$output .= '</figure>';
 				} // End if not false
