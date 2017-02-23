@@ -14,4 +14,11 @@
  * @package         Give_It_A_REST_Gallery
  */
 
+add_action( 'wp_enqueue_scripts', 'giarg_scripts' );
+function giarg_scripts() {
+	wp_enqueue_script( 'giarg-js', plugin_dir_url( __FILE__ ) . 'assets/giarg-js.js', array( 'jquery' ), '0.5', true );
+	wp_localize_script( 'giarg-js', 'ajaxurl', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+}
+
 require_once( __DIR__ . '/inc/class-giarg-gallery-filter.php' );
+require_once( __DIR__ . '/inc/class-giarg-gallery-ajax-call.php');

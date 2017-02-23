@@ -25,6 +25,21 @@ class GIARG_Gallery_Filter {
 	public function gallery_filter( $output, $atts ) {
 
 		/**
+		 * The shortcode param of 'rest_filter=true' must be set to trigger this filter
+		 * otherwise the default WP core gallery will be returned
+		 */
+		if ( !isset( $atts['rest_filter'] ) || 'true' !== $atts['rest_filter'] ) {
+
+			/**
+			 * Showing error message and returning WP default gallery if `reset_filter=true` is not in the gallery params
+			 */
+			if ( current_user_can( 'manage_options' ) ) {
+				echo '<small>not filtering this gallery, if you want to allow for a "load more" option on this gallery please add `rest_filter=true` to the gallery shortcode - this message is only visible by admins</small>';
+			}
+			return $output;
+		}
+
+		/**
 		 * Moving our image IDs to an array so we can loop over them
 		 */
 		$img_ids_as_array = explode( ',', $atts['include'] );
@@ -45,6 +60,20 @@ class GIARG_Gallery_Filter {
 		 * On initial load we are only showing these images
 		 */
 		$imgs_to_show = array_slice( $img_ids_as_array, 0, $offset, true );
+
+// echo "img_ids_as_array\n<pre>";
+// print_r($img_ids_as_array);
+// echo "</pre>\n\n";
+
+// echo "imgs_to_show\n<pre>";
+// print_r($imgs_to_show);
+// echo "</pre>\n\n";
+
+// $next_imgs_to_show = array_diff( $img_ids_as_array, $imgs_to_show );
+
+// echo "next_imgs_to_show\n<pre>";
+// print_r($next_imgs_to_show);
+// echo "</pre>\n\n";
 
 		/**
 		 * Building gallery output
