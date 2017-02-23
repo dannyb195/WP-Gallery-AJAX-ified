@@ -9,6 +9,8 @@
  * Domain Path:     /languages
  * Version:         0.1.0
  *
+ * @todo Document usage, num_imgs_to_show specifically, fill out README, write REST calls to attachments, hook up ajax returns
+ *
  * @package         Give_It_A_REST_Gallery
  */
 
