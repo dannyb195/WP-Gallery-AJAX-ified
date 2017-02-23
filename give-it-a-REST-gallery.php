@@ -12,4 +12,4 @@
  * @package         Give_It_A_REST_Gallery
  */
 
-require_once( __DIR__ . '/inc/class_GIARG_gallery_filter.php' );
+require_once( __DIR__ . '/inc/class-giarg-gallery-filter.php' );

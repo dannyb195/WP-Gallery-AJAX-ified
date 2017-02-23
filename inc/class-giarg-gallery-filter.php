@@ -50,22 +50,18 @@ class GIARG_Gallery_Filter {
 		 * Building gallery output
 		 */
 		$output = '<div class="gallery gallery-columns-' . intval( $columns ) . ' giarg-contain">';
-
-			foreach( $imgs_to_show as $img_id ) {
-
+			// @codingStandardsIgnoreStart
+			foreach ( $imgs_to_show as $img_id ) {
 				$img_src = wp_get_attachment_image_src( intval( $img_id ), 'thumbnail' );
-
-				if ( false != $img_src ) {
+				if ( false !== $img_src ) {
 					$output .= '<figure class="gallery-item">';
 						$output .= '<div class="gallery-icon landscape">';
 							$output .= '<a href="' . get_permalink( $img_id ) . '"><img width="' . $img_src[1] . '" height="' . $img_src[2] . '" src="' . esc_url( $img_src[0] ) . '" class="attachment-thumbnail size-thumbnail" alt=""></a>';
 						$output .= '</div>';
 					$output .= '</figure>';
 				} // End if not false
-
 			} // End foreach
-
-
+			// @codingStandardsIgnoreEnd
 		$output .= '</div><!-- End .gallery-contain -->';
 		$output .= '<button class="giarg-load-more">' . esc_html__( 'Load More Images', 'give-it-a-REST-gallery' ) . '</button>';
 
