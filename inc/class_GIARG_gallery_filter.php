@@ -24,17 +24,50 @@ class GIARG_Gallery_Filter {
 	 */
 	public function gallery_filter( $output, $atts ) {
 
+		/**
+		 * Moving our image IDs to an array so we can loop over them
+		 */
 		$img_ids_as_array = explode( ',', $atts['include'] );
 
-		$output = '<div class="gallery gallery-columns-3 giarg-contain">';
-			foreach( $img_ids_as_array as $img_id ) {
-				$output .= '<figure class="gallery-item">';
-					$output .= '<div class="gallery-icon landscape">';
-						$output .= '<a href="http://vanilla-php.dev/dsc20040724_152504_532-jpg/"><img width="150" height="150" src="http://vanilla-php.dev/wp-content/uploads/2017/02/dsc20040724_152504_532-150x150.jpg" class="attachment-thumbnail size-thumbnail" alt=""></a>';
-					$output .= '</div>';
-				$output .= '</figure>';
-			}
+		/**
+		 * Checking if the columns of the gallery have been updated by the user
+		 * WP defaults to 3
+		 */
+		$columns = isset( $atts['columns'] ) ? $atts['columns'] : '3';
+
+		/**
+		 * Checking if we have a user input to designate how many images to show / load at a time
+		 * @var [type]
+		 */
+		$offset = isset( $atts['num_imgs_to_show'] ) ? intval( $atts['num_imgs_to_show'] ) : apply_filters( 'giarg_num_imgs_to_show', 5 );
+
+		/**
+		 * On initial load we are only showing these images
+		 */
+		$imgs_to_show = array_slice( $img_ids_as_array, 0, $offset, true );
+
+		/**
+		 * Building gallery output
+		 */
+		$output = '<div class="gallery gallery-columns-' . intval( $columns ) . ' giarg-contain">';
+
+			foreach( $imgs_to_show as $img_id ) {
+
+				$img_src = wp_get_attachment_image_src( intval( $img_id ), 'thumbnail' );
+
+				if ( false != $img_src ) {
+					$output .= '<figure class="gallery-item">';
+						$output .= '<div class="gallery-icon landscape">';
+							$output .= '<a href="' . get_permalink( $img_id ) . '"><img width="' . $img_src[1] . '" height="' . $img_src[2] . '" src="' . esc_url( $img_src[0] ) . '" class="attachment-thumbnail size-thumbnail" alt=""></a>';
+						$output .= '</div>';
+					$output .= '</figure>';
+				} // End if not false
+
+			} // End foreach
+
+
 		$output .= '</div><!-- End .gallery-contain -->';
+		$output .= '<button class="giarg-load-more">' . esc_html__( 'Load More Images', 'give-it-a-REST-gallery' ) . '</button>';
 
 		return $output;
 	}
