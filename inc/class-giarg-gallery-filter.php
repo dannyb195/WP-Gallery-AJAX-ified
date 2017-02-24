@@ -69,7 +69,10 @@ class GIARG_Gallery_Filter {
 // print_r($imgs_to_show);
 // echo "</pre>\n\n";
 
-// $next_imgs_to_show = array_diff( $img_ids_as_array, $imgs_to_show );
+		/**
+		 * Removing images that showed on initial load from our array / string of image ID to load in the future
+		 */
+		$next_imgs_to_show = implode( ',', array_diff( $img_ids_as_array, $imgs_to_show ) );
 
 // echo "next_imgs_to_show\n<pre>";
 // print_r($next_imgs_to_show);
@@ -92,7 +95,7 @@ class GIARG_Gallery_Filter {
 			} // End foreach
 			// @codingStandardsIgnoreEnd
 		$output .= '</div><!-- End .gallery-contain -->';
-		$output .= '<button class="giarg-load-more">' . esc_html( apply_filters( 'giarg_load_more_text', __( 'Load More Images', 'give-it-a-REST-gallery' ) ) ) . '</button>';
+		$output .= '<button class="giarg-load-more" data-imgs="' . $next_imgs_to_show .'" data-imgs_to_show="' . intval( $offset ) . '">' . esc_html( apply_filters( 'giarg_load_more_text', __( 'Load More Images', 'give-it-a-REST-gallery' ) ) ) . '</button>';
 
 		return $output;
 	}

@@ -8,9 +8,6 @@
 class Giarg_Gallery_Ajax_Call {
 
 	public function __construct() {
-
-		echo 'construct';
-
 		add_action( 'wp_ajax_giarg_ajax', array( $this, 'giarg_ajax' ) );
 		add_action( 'wp_ajax_nopriv_giarg_ajax', array( $this, 'giarg_ajax' ) );
 	}
@@ -18,13 +15,27 @@ class Giarg_Gallery_Ajax_Call {
 	public function giarg_ajax() {
 
 
-		echo "_GET\n<pre>";
-		print_r($_GET);
-		echo "</pre>\n\n";
+		// echo "_GET\n<pre>";
+		// print_r($_GET);
+		// echo "</pre>\n\n";
 
-		echo 'something';
+		$imgs = explode( ',', $_GET['imgs'] );
 
-		die();
+		$return_imgs = array_slice( $imgs , 0, $_GET['imgs_to_show'] );
+
+		// echo "return_imgs\n<pre>";
+		// print_r($return_imgs);
+		// echo "</pre>\n\n";
+
+		$return = array(
+			'remaining_imgs' => implode( ',', array_diff( $imgs, $return_imgs ) ),
+			'show_imgs' => array(
+				'img_1' => 'places holders for dom output',
+				'img_2' => 'places holders for dom output',
+			),
+		);
+
+		wp_send_json( json_encode( $return ) );
 
 	}
 

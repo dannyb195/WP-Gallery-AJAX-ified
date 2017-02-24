@@ -3,26 +3,32 @@ jQuery( document ).ready( function( $ ) {
 	// alert( 'sdfsdf' );
 
 	$( '.giarg-load-more' ).on( 'click', function() {
-		// $( '.giarg-contain' ).append( 'dfsgdsfg' );
+
+		var next_imgs_to_show = $( this ).attr( 'data-imgs' );
+		var imgs_to_show = $( this ).attr( 'data-imgs_to_show' );
 
 		$.ajax( {
 			url: ajaxurl.ajaxurl,
 			type: 'GET',
 			data: {
 				'action': 'giarg_ajax',
+				'imgs': next_imgs_to_show,
+				'imgs_to_show': imgs_to_show,
 			},
 			success: function( data ) {
+				// console.log( 'success ' + data );
 
-				// $( 'span.loading' ).html( 'Created ' + data.data.length + ' Posts' );
 
-				// var posts = data.data;
-				// posts.forEach( function( item, index ) {
-				// 	$( '.dans_prefix_options' ).append( 'Post created with ID of: ' + item + '</br>' );
-				// } );
+				var remaining_imgs = JSON.parse( data ),
+					remaining_imgs = remaining_imgs.remaining_imgs;
 
-				// alert( data );
+				// console.log( remaining_imgs );
 
-				console.log( 'success ' + data );
+
+				// $( '.giarg-load-more' ).attr( 'data-imgs', remaining_imgs );
+
+				$( '.giarg-load-more' ).attr( 'data-imgs', remaining_imgs );
+
 
 			},
 			error: function( data ) {
