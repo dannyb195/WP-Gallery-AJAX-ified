@@ -61,22 +61,10 @@ class GIARG_Gallery_Filter {
 		 */
 		$imgs_to_show = array_slice( $img_ids_as_array, 0, $offset, true );
 
-// echo "img_ids_as_array\n<pre>";
-// print_r($img_ids_as_array);
-// echo "</pre>\n\n";
-
-// echo "imgs_to_show\n<pre>";
-// print_r($imgs_to_show);
-// echo "</pre>\n\n";
-
 		/**
 		 * Removing images that showed on initial load from our array / string of image ID to load in the future
 		 */
 		$next_imgs_to_show = implode( ',', array_diff( $img_ids_as_array, $imgs_to_show ) );
-
-// echo "next_imgs_to_show\n<pre>";
-// print_r($next_imgs_to_show);
-// echo "</pre>\n\n";
 
 		/**
 		 * Building gallery output

@@ -1,7 +1,5 @@
 jQuery( document ).ready( function( $ ) {
 
-	// alert( 'sdfsdf' );
-
 	$( '.giarg-load-more' ).on( 'click', function() {
 
 		var next_imgs_to_show = $( this ).attr( 'data-imgs' );
@@ -16,24 +14,22 @@ jQuery( document ).ready( function( $ ) {
 				'imgs_to_show': imgs_to_show,
 			},
 			success: function( data ) {
-				// console.log( 'success ' + data );
 
+				var data = JSON.parse( data ),
+					remaining_imgs = data.remaining_imgs;
+					imgs_to_show = data.show_imgs;
 
-				var remaining_imgs = JSON.parse( data ),
-					remaining_imgs = remaining_imgs.remaining_imgs;
-
-				// console.log( remaining_imgs );
-
-
-				// $( '.giarg-load-more' ).attr( 'data-imgs', remaining_imgs );
-
+				/**
+				 * Updating images to show on next click
+				 */
 				$( '.giarg-load-more' ).attr( 'data-imgs', remaining_imgs );
 
+				imgs_to_show.forEach( function( item, index ) {
+					$( '.giarg-contain' ).append( item );
+				} );
 
 			},
 			error: function( data ) {
-				// Possibly run .submit on the form here, need to look into project requirements more
-
 				// console.log( data );
 			},
 
