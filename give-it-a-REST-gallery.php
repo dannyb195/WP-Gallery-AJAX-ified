@@ -20,5 +20,5 @@ function giarg_scripts() {
 	wp_localize_script( 'giarg-js', 'ajaxurl', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 }
 
-require_once( __DIR__ . '/inc/class-giarg-gallery-filter.php' );
-require_once( __DIR__ . '/inc/class-giarg-gallery-ajax-call.php');
+require_once( 'inc/class-giarg-gallery-filter.php' );
+require_once( 'inc/class-giarg-gallery-ajax-call.php');
