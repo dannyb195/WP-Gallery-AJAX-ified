@@ -9,7 +9,7 @@
  * @package default
  * @author
  **/
-class GIARG_Gallery_Filter {
+class wpgalleryajaxified_Gallery_Filter {
 
 	public function __construct() {
 		add_filter( 'post_gallery', array( $this, 'gallery_filter' ), 10, 2 );
@@ -28,7 +28,7 @@ class GIARG_Gallery_Filter {
 		 * The shortcode param of 'rest_filter=true' must be set to trigger this filter
 		 * otherwise the default WP core gallery will be returned
 		 */
-		if ( !isset( $atts['rest_filter'] ) || 'true' !== $atts['rest_filter'] ) {
+		if ( !isset( $atts['ajax_filter'] ) || 'true' !== $atts['ajax_filter'] ) {
 
 			/**
 			 * Showing error message and returning WP default gallery if `reset_filter=true` is not in the gallery params
@@ -54,7 +54,7 @@ class GIARG_Gallery_Filter {
 		 * Checking if we have a user input to designate how many images to show / load at a time
 		 * @var [type]
 		 */
-		$offset = isset( $atts['num_imgs_to_show'] ) ? intval( $atts['num_imgs_to_show'] ) : apply_filters( 'giarg_num_imgs_to_show', 5 );
+		$offset = isset( $atts['num_imgs_to_show'] ) ? intval( $atts['num_imgs_to_show'] ) : apply_filters( 'wpgalleryajaxified_num_imgs_to_show', 5 );
 
 		/**
 		 * On initial load we are only showing these images
@@ -69,7 +69,7 @@ class GIARG_Gallery_Filter {
 		/**
 		 * Building gallery output
 		 */
-		$output = '<div class="gallery gallery-columns-' . intval( $columns ) . ' giarg-contain">';
+		$output = '<div class="gallery gallery-columns-' . intval( $columns ) . ' wpgalleryajaxified-contain">';
 			// @codingStandardsIgnoreStart
 			foreach ( $imgs_to_show as $img_id ) {
 				$img_src = wp_get_attachment_image_src( intval( $img_id ), 'thumbnail' );
@@ -83,11 +83,11 @@ class GIARG_Gallery_Filter {
 			} // End foreach
 			// @codingStandardsIgnoreEnd
 		$output .= '</div><!-- End .gallery-contain -->';
-		$output .= '<button class="giarg-load-more" data-imgs="' . $next_imgs_to_show .'" data-imgs_to_show="' . intval( $offset ) . '">' . esc_html( apply_filters( 'giarg_load_more_text', __( 'Load More Images', 'give-it-a-REST-gallery' ) ) ) . '</button>';
+		$output .= '<button class="wpgalleryajaxified-load-more" data-imgs="' . $next_imgs_to_show .'" data-imgs_to_show="' . intval( $offset ) . '">' . esc_html( apply_filters( 'wpgalleryajaxified_load_more_text', __( 'Load More Images', 'give-it-a-REST-gallery' ) ) ) . '</button>';
 
 		return $output;
 	}
 
 } // END class
 
-new GIARG_Gallery_Filter();
+new wpgalleryajaxified_Gallery_Filter();
