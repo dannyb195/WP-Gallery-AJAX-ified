@@ -26,4 +26,4 @@ function wpgalleryajaxified_scripts() {
 }
 
 require_once( 'inc/class-wpgalleryajaxified-gallery-filter.php' );
-require_once( 'inc/class-wpgalleryajaxified-gallery-ajax-call.php');
+require_once( 'inc/class-wpgalleryajaxified-gallery-ajax-call.php' );

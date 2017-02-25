@@ -5,7 +5,7 @@
  * @package default
  * @author
  **/
-class wpgalleryajaxified_Gallery_Ajax_Call {
+class Wpgalleryajaxified_Gallery_Ajax_Call {
 
 	/**
 	 * Our construct
@@ -17,12 +17,14 @@ class wpgalleryajaxified_Gallery_Ajax_Call {
 
 	/**
 	 * [wpgalleryajaxified_ajax description]
+	 *
 	 * @return string JSON response
 	 */
 	public function wpgalleryajaxified_ajax() {
 
 		/**
 		 * All current image ids at the time of click of button.wpgalleryajaxified-load-more via data-imgs
+		 *
 		 * @var [type]
 		 */
 		$imgs = explode( ',', $_GET['imgs'] );
@@ -30,17 +32,18 @@ class wpgalleryajaxified_Gallery_Ajax_Call {
 		/**
 		 * Images that will be shown on the next click after the click that just happened
 		 * this value updates the data-imgs of button.wpgalleryajaxified-load-more
+		 *
 		 * @var array
 		 */
 		$return_imgs = array_slice( $imgs , 0, $_GET['imgs_to_show'] );
 
-
 		/**
 		 * For each image that we should show on click, here we will build its HTML output
+		 *
 		 * @var array
 		 */
 		$show_imgs = array();
-		foreach ($return_imgs as $img_id ) {
+		foreach ( $return_imgs as $img_id ) {
 
 			$img_src = wp_get_attachment_image_src( intval( $img_id ), 'thumbnail' );
 
@@ -59,10 +62,11 @@ class wpgalleryajaxified_Gallery_Ajax_Call {
 
 		/**
 		 * Building our array to return to our AJAX call
+		 *
 		 * @var array
 		 */
 
-		wp_send_json( json_encode( array(
+		wp_send_json( wp_json_encode( array(
 			'remaining_imgs' => implode( ',', array_diff( $imgs, $return_imgs ) ),
 			'show_imgs' => $show_imgs,
 		) ) );
@@ -71,4 +75,4 @@ class wpgalleryajaxified_Gallery_Ajax_Call {
 
 } // END class
 
-new wpgalleryajaxified_Gallery_Ajax_Call();
+new Wpgalleryajaxified_Gallery_Ajax_Call();
