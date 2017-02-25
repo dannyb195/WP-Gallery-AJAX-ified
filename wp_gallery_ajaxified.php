@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:     WP Gallery AJAX-ified
- * Plugin URI:      PLUGIN SITE HERE
- * Description:     PLUGIN DESCRIPTION HERE
- * Author:          YOUR NAME HERE
- * Author URI:      YOUR SITE HERE
- * Text Domain:     give-it-a-REST-gallery
+ * Plugin URI:      https://github.com/dannyb195/WP-Gallery-AJAX-ified
+ * Description:		This plugin filters the default WordPress core image gallery to allow for a "show more images" button, limiting the number of images that are shown on initial load and after clicking "show more images". Add the additional parameters to the [gallery] shortcode to activate this functionality: ajax_filter=true, num_imgs_to_show=5
+ * Author:          Dan Beil
+ * Author URI:      http://addactiondan.me/
+ * Text Domain:     wpgalleryajaxified
  * Domain Path:     /languages
  * Version:         0.1.0
  *
@@ -22,7 +22,7 @@ function wpgalleryajaxified_scripts() {
 		'spinner' => apply_filters( 'wpgalleryajaxified_spinner', plugin_dir_url( __FILE__ ) . 'assets/img/spin.svg' ), // From http://loading.io/
 		'spin_width' => apply_filters( 'wpgalleryajaxified_spin_width', 25 ),
 		'spin_height' => apply_filters( 'wpgalleryajaxified_spin_height', 25 ),
-	 ) );
+	) );
 }
 
 require_once( 'inc/class-wpgalleryajaxified-gallery-filter.php' );

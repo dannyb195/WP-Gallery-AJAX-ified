@@ -5,8 +5,6 @@ jQuery( document ).ready( function( $ ) {
 		var next_imgs_to_show = $( this ).attr( 'data-imgs' );
 		var imgs_to_show = $( this ).attr( 'data-imgs_to_show' );
 
-		console.log( ajaxdata );
-
 		$.ajax( {
 			url: ajaxdata.ajaxurl,
 			type: 'GET',
