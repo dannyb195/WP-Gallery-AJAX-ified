@@ -5,8 +5,10 @@ jQuery( document ).ready( function( $ ) {
 		var next_imgs_to_show = $( this ).attr( 'data-imgs' );
 		var imgs_to_show = $( this ).attr( 'data-imgs_to_show' );
 
+		console.log( ajaxdata );
+
 		$.ajax( {
-			url: ajaxurl.ajaxurl,
+			url: ajaxdata.ajaxurl,
 			type: 'GET',
 			data: {
 				'action': 'wpgalleryajaxified_ajax',
@@ -19,7 +21,7 @@ jQuery( document ).ready( function( $ ) {
 					remaining_imgs = data.remaining_imgs;
 					imgs_to_show = data.show_imgs;
 
-				// $( 'button.wpgalleryajaxified-load-more' ).after( '<img class="wpgalleryajaxified-loading" src="' + ajaxurl.admin_url + '/images/spinner.gif" />' );
+				$( 'button.wpgalleryajaxified-load-more' ).after( '<img class="wpgalleryajaxified-loading" height="' + ajaxdata.spin_height + '" width="' + ajaxdata.spin_width + '" src="' + ajaxdata.spinner + '" />' );
 
 				/**
 				 * Updating images to show on next click

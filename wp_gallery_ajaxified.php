@@ -17,7 +17,12 @@
 add_action( 'wp_enqueue_scripts', 'wpgalleryajaxified_scripts' );
 function wpgalleryajaxified_scripts() {
 	wp_enqueue_script( 'wpgalleryajaxified-js', plugin_dir_url( __FILE__ ) . 'assets/wpgalleryajaxified-js.js', array( 'jquery' ), '0.5', true );
-	wp_localize_script( 'wpgalleryajaxified-js', 'ajaxurl', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+	wp_localize_script( 'wpgalleryajaxified-js', 'ajaxdata', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'spinner' => apply_filters( 'wpgalleryajaxified_spinner', plugin_dir_url( __FILE__ ) . 'assets/img/spin.svg' ),
+		'spin_width' => apply_filters( 'wpgalleryajaxified_spin_width', 25 ),
+		'spin_height' => apply_filters( 'wpgalleryajaxified_spin_height', 25 ),
+	 ) );
 }
 
 require_once( 'inc/class-wpgalleryajaxified-gallery-filter.php' );
