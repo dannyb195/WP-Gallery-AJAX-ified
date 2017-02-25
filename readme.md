@@ -1,3 +1,5 @@
+![alt tag](http://addactiondan.me/wp-content/uploads/2017/02/wp-gallery-ajax.gif)
+
 === WP Gallery AJAX0ified ===
 Requires at least: 3.7
 Tested up to: 4.7.2
