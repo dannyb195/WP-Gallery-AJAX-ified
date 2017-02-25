@@ -11,7 +11,7 @@ This plugin filters the default WordPress core image gallery to allow for a "sho
 
 Once this plugin is installed and active add the additional parameters of ajax_filter=true, num_imgs_to_show=5 to any WordPress image gallery that you wish to limit the number of images that initially load.
 
-== Useage ==
+### Usage ###
 [gallery columns="5" ids="4348,4340,4331,...,4272" num_imgs_to_show=2 ajax_filter=true]
 
 == Installation ==
