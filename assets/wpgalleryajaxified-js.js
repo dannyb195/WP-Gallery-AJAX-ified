@@ -15,13 +15,14 @@ jQuery( document ).ready( function( $ ) {
 				'imgs': next_imgs_to_show,
 				'imgs_to_show': imgs_to_show,
 			},
+			beforeSend: function() {
+				$( 'button.wpgalleryajaxified-load-more' ).after( '<img class="wpgalleryajaxified-loading" height="' + ajaxdata.spin_height + '" width="' + ajaxdata.spin_width + '" src="' + ajaxdata.spinner + '" />' );
+			},
 			success: function( data ) {
 
 				var data = JSON.parse( data ),
 					remaining_imgs = data.remaining_imgs;
 					imgs_to_show = data.show_imgs;
-
-				$( 'button.wpgalleryajaxified-load-more' ).after( '<img class="wpgalleryajaxified-loading" height="' + ajaxdata.spin_height + '" width="' + ajaxdata.spin_width + '" src="' + ajaxdata.spinner + '" />' );
 
 				/**
 				 * Updating images to show on next click
