@@ -40,14 +40,7 @@ jQuery( document ).ready( function( $ ) {
 			error: function( data ) {
 			},
 			complete: function() {
-
-				/**
-				 * Adding a slight delay here as sometimes this actually happens to fast
-				 * and the user does not gt any feedback.
-				 */
-				setTimeout(function() {
-				    $( 'img.wpgalleryajaxified-loading' ).remove();
-				}, 200);
+			    $( 'img.wpgalleryajaxified-loading' ).remove();
 			},
 
 		} ); // End ajax call
